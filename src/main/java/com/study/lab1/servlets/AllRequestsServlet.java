@@ -3,7 +3,6 @@ package com.study.lab1.servlets;
 import com.study.lab1.templater.PageGenerator;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +10,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet(value = "Web Study",urlPatterns = "Web Study pattern")
 public class AllRequestsServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -20,6 +18,7 @@ public class AllRequestsServlet extends HttpServlet {
 
         Map<String, Object> pageVariables = createPageVariablesMap(request);
         pageVariables.put("message", "");
+        pageVariables.put("pathInfo", "test");
 
         response.getWriter().println(PageGenerator.instance().getPage("page.html", pageVariables));
 
