@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AllRequestsServlet extends HttpServlet {
+public class HomeRequestsServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -18,7 +18,7 @@ public class AllRequestsServlet extends HttpServlet {
 
         Map<String, Object> pageVariables = createPageVariablesMap(request);
         pageVariables.put("message", "");
-        pageVariables.put("pathInfo", "test");
+        pageVariables.put("pathInfo", "");
 
         response.getWriter().println(PageGenerator.instance().getPage("page.html", pageVariables));
 
@@ -31,7 +31,8 @@ public class AllRequestsServlet extends HttpServlet {
                        HttpServletResponse response) throws ServletException, IOException {
         Map<String, Object> pageVariables = createPageVariablesMap(request);
 
-        String message = request.getParameter("message");
+        String message =  request.getParameter("message");
+        String pathInfo =  request.getParameter("pathInfo");
 
         response.setContentType("text/html;charset=utf-8");
 
@@ -41,6 +42,8 @@ public class AllRequestsServlet extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_OK);
         }
         pageVariables.put("message", message == null ? "" : message);
+        pageVariables.put("pathInfo", pathInfo == null ? "" : pathInfo);
+
 
         response.getWriter().println(PageGenerator.instance().getPage("page.html", pageVariables));
     }
