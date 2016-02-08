@@ -1,5 +1,6 @@
 package com.study.lab1.servlets;
 
+import com.study.lab1.templater.PageGenerator;
 import j2html.tags.ContainerTag;
 
 import javax.servlet.ServletException;
@@ -30,6 +31,7 @@ public class InfoRequestServlet extends HttpServlet {
 
         System.out.println("test");
         Map<String, Object> data = data(request);
+        data.put("message", "");
 
         ContainerTag html = html();
         html.with(
@@ -49,8 +51,8 @@ public class InfoRequestServlet extends HttpServlet {
             response.getWriter().print("You are not filled the form");
         } else {
             // FIXME: 07.02.2016 
-//            response.getWriter().println(PageGenerator.instance().getPage("info.html", data));
-            response.getWriter().print(html);
+            response.getWriter().println(PageGenerator.instance().getPage("info.html", data));
+//            response.getWriter().print(html);
         }
 
         response.setContentType("text/html;charset=utf-8");
