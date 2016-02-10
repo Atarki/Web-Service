@@ -1,7 +1,7 @@
 package com.study.lab1.main;
 
 import com.study.lab1.servlets.HomeRequestsServlet;
-import com.study.lab1.servlets.InfoRequestServlet;
+import com.study.lab1.servlets.InfoRequestsServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -9,11 +9,11 @@ import org.eclipse.jetty.servlet.ServletHolder;
 public class Main {
     public static void main(String[] args) throws Exception {
         HomeRequestsServlet homeRequestsServlet = new HomeRequestsServlet();
-        InfoRequestServlet infoRequestServlet = new InfoRequestServlet();
+        InfoRequestsServlet infoRequestsServlet = new InfoRequestsServlet();
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
 
-        context.addServlet(new ServletHolder(infoRequestServlet), "/info");
+        context.addServlet(new ServletHolder(infoRequestsServlet), "/info");
         context.addServlet(new ServletHolder(homeRequestsServlet), "/*");
 
         Server server = new Server(8080);
