@@ -1,7 +1,6 @@
 package com.study.lab1.servlets;
 
 import com.study.lab1.templater.PageGenerator;
-import freemarker.template.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,16 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 @WebServlet(value = "info")
 public class InfoRequestsServlet extends HttpServlet {
-
     private static ArrayList citiesID;
-    private static Configuration config = new Configuration();;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,6 +24,7 @@ public class InfoRequestsServlet extends HttpServlet {
 
         Map<String, Object> data = data(request);
         data.put("cities", citiesID);
+        //
         data.put("login", "");
         data.put("password", "");
         data.put("message", "");
@@ -38,8 +35,6 @@ public class InfoRequestsServlet extends HttpServlet {
         data.put("parameters", request.getParameterMap().toString());
 
         response.getWriter().println(PageGenerator.instance().getPage("cityData.html", data));
-
-        StringWriter out = new StringWriter();
     }
 
     @Override
@@ -49,7 +44,6 @@ public class InfoRequestsServlet extends HttpServlet {
         Map<String, Object> pageVariables = data(req);
         pageVariables.put("infoMessage", infoMessage == null ? "" : infoMessage);
         resp.getWriter().println(PageGenerator.instance().getPage("cityData.html", pageVariables));*/
-
     }
 
     private static Map<String, Object> data(HttpServletRequest request) {
