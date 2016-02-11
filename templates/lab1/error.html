@@ -9,24 +9,29 @@
     <script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
 </head>
 <body>
+<table width="100%">
+    <td align="center">
 
-<form method="get">
-    <input type="submit" value="Refresh" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" formaction="info">
-</form>
-<form>
-    <div>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="text-align: center;">
-            <input class="mdl-textfield__input" type="text" id="path" name="path">
-            <label class="mdl-textfield__label" for="path">Type path to file to discover list of items</label>
-        </div>
-        <button class="mdl-button mdl-js-button mdl-button--primary" formmethod="post">
-            <i class="material-icons">search</i>
-            Submit
-        </button>
-    </div>
-</form>
-<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" width="400"></table>
+        <form method="get">
+            <input type="submit" value="Refresh"
+                   class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                   formaction="info">
+        </form>
+        <form>
+            <div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="text-align: center;">
+                    <input class="mdl-textfield__input" type="text" id="path" name="path">
+                    <label class="mdl-textfield__label" for="path">Type path to file to discover list of items</label>
+                </div>
+                <button class="mdl-button mdl-js-button mdl-button--primary" formmethod="post">
+                    <i class="material-icons">search</i>
+                    Submit
+                </button>
+            </div>
+        </form>
+        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" width="400"></table>
+        <h3>File not found or incorrect text file type</h3>
+</table>
 
-<h3>File not found or incorrect text file type</h3>
 </body>
 </html>
