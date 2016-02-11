@@ -1,5 +1,6 @@
 package com.study.lab1.servlets;
 
+import com.study.lab1.main.PathFileReader;
 import com.study.lab1.templater.PageGenerator;
 
 import javax.servlet.ServletException;
@@ -7,8 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,34 +15,33 @@ import java.util.Map;
 
 @WebServlet(value = "info")
 public class InfoRequestsServlet extends HttpServlet {
-    private static ArrayList citiesID;
+    private Map<String, Object> data;
+    String string = "src/city_list.txt";
+    String string2 = "D:\\_JAVA_PROJ\\_JAVA_TUTS_FROM_TOLIK_WEB\\src\\city_list.txt";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        citiesID = getItemList();
-
-        Map<String, Object> data = data(request);
-        data.put("cities", citiesID);
-        //
-        data.put("login", "");
-        data.put("password", "");
-        data.put("message", "");
-        data.put("method", request.getMethod());
-        data.put("URL", request.getRequestURL().toString());
-        data.put("pathInfo", "");
-        data.put("sessionId", request.getSession().getId());
-        data.put("parameters", request.getParameterMap().toString());
+        data = data(request);
+        data.put("cities", new ArrayList<>());
 
         response.getWriter().println(PageGenerator.instance().getPage("cityData.html", data));
+        response.setContentType("text/html;charset=utf-8");
+        response.setStatus(HttpServletResponse.SC_OK);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        super.doPost(req, resp);
-       /* String infoMessage = req.getParameter("infoMessage");
-        Map<String, Object> pageVariables = data(req);
-        pageVariables.put("infoMessage", infoMessage == null ? "" : infoMessage);
-        resp.getWriter().println(PageGenerator.instance().getPage("cityData.html", pageVariables));*/
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ArrayList citiesID = PathFileReader.getItemList(request.getParameter("path"));
+//        ArrayList citiesID = PathFileReader.getItemList(string2);
+        data = data(request);
+        data.put("cities", citiesID);
+        if (citiesID.isEmpty()) {
+            response.getWriter().println(PageGenerator.instance().getPage("error.html", data));
+        } else {
+            response.getWriter().println(PageGenerator.instance().getPage("cityData.html", data));
+            response.setContentType("text/html;charset=utf-8");
+            response.setStatus(HttpServletResponse.SC_OK);
+        }
     }
 
     private static Map<String, Object> data(HttpServletRequest request) {
@@ -53,16 +51,5 @@ public class InfoRequestsServlet extends HttpServlet {
         return pageVariables;
     }
 
-    private static ArrayList getItemList() throws IOException {
-        citiesID = new ArrayList<>();
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("src/city_list.txt"));
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            citiesID.add(line);
-            System.out.println("city: " + line);
-        }
-        bufferedReader.close();
-        return citiesID;
-    }
 
 }

@@ -13,14 +13,20 @@
 <form method="get">
     <input type="submit" value="Go Back" class="mdl-button mdl-js-button mdl-button--primary" formaction="/">
 </form>
+<form>
+    <div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="text-align: center;">
+            <input class="mdl-textfield__input" type="text" id="path" name="path">
+            <label class="mdl-textfield__label" for="path">Type path to file to discover list of items</label>
+        </div>
+        <button class="mdl-button mdl-js-button mdl-button--primary" formmethod="post">
+            <i class="material-icons">search</i>
+            Submit
+        </button>
+    </div>
+</form>
 
-
-<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" width="400" align="center">
-    <thead>
-    <tr>
-        <th class="mdl-data-table__cell--non-numeric">City List</th>
-    </tr>
-    </thead>
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" width="400">
     <tbody>
     <#list cities as citiesID>
         <tr>
@@ -30,5 +36,22 @@
     </#list>
     </tbody>
 </table>
+
+<div/>
+<div>
+    <script type="text/javascript">
+        function performClick(elemId) {
+            var elem = document.getElementById(elemId);
+            if (elem && document.createEvent) {
+                var evt = document.createEvent("MouseEvents");
+                evt.initEvent("click", true, false);
+                elem.dispatchEvent(evt);
+            }
+        }
+    </script>
+    <a href="#" onclick="performClick('theFile');">Open file dialog</a>
+    <input type="file" id="theFile"/>
+</div>
+
 </body>
 </html>
