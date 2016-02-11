@@ -13,9 +13,6 @@ import java.util.Map;
 public class HomeRequestsServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        System.out.println("GET response");
-
         Map<String, Object> pageVariables = createPageVariablesMap(request);
         pageVariables.put("message", "");
         pageVariables.put("pathInfo", "");

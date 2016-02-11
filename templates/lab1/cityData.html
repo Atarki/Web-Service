@@ -11,11 +11,11 @@
 <body>
 
 <form method="get">
-    <input type="submit" value="Go Back" class="mdl-button mdl-js-button mdl-button--primary" formaction="*">
+    <input type="submit" value="Go Back" class="mdl-button mdl-js-button mdl-button--primary" formaction="/">
 </form>
 
 
-<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" width="400" align="center">
     <thead>
     <tr>
         <th class="mdl-data-table__cell--non-numeric">City List</th>
@@ -24,13 +24,11 @@
     <tbody>
     <#list cities as citiesID>
         <tr>
-            <td>${citiesID_index}</td>
             <td class="mdl-data-table__cell--non-numeric">${citiesID}</td>
-            <td> </td>
+            <td>${citiesID_index}</td>
         </tr>
     </#list>
     </tbody>
 </table>
-
 </body>
 </html>

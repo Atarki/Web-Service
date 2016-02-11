@@ -24,20 +24,7 @@ public class InfoRequestsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*HtmlCanvas html = new HtmlCanvas();
-        html
-                .html()
-                .body()
-                .h1().content("Hello Coder")
-                .table().write("test")
-                ._table()
-                ._body()
-                ._html();
-        System.out.println(html.toHtml());*/
-
-
         citiesID = getItemList();
-        System.out.println("test");
 
         Map<String, Object> data = data(request);
         data.put("cities", citiesID);
@@ -53,40 +40,6 @@ public class InfoRequestsServlet extends HttpServlet {
         response.getWriter().println(PageGenerator.instance().getPage("cityData.html", data));
 
         StringWriter out = new StringWriter();
-        System.out.println(out.getBuffer().toString());
-
-        /*try {
-            template.process(data, out);
-            out.flush();
-        } catch (TemplateException e) {
-            e.printStackTrace();
-        }*/
-
-
-        /*ContainerTag html = html();
-        html.with(
-                head().with(
-                        title("Title"),
-                        link().withRel("stylesheet").withHref("/css/main.css")
-                ),
-                body().with(
-                        main().with(
-                                h1("Hello " + data.get("login")),
-                                h1("Your password " + data.get("password"))
-                        )
-                )
-        );*/
-
-//            response.getWriter().println(PageGenerator.instance().getPage("cityData.html", data));
-//        if (data.get("login").equals("")) {
-//            response.getWriter().print("You are not filled the form");
-//        } else {
-        // FIXME: 07.02.2016
-//        }
-//            response.getWriter().print(html);
-//
-//        response.setContentType("text/html;charset=utf-8");
-//        response.setStatus(HttpServletResponse.SC_OK);
     }
 
     @Override
