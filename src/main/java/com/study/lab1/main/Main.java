@@ -13,8 +13,8 @@ public class Main {
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
 
-        context.addServlet(new ServletHolder(infoRequestsServlet), "/info");
-        context.addServlet(new ServletHolder(homeRequestsServlet), "/*");
+        context.addServlet(new ServletHolder(infoRequestsServlet), "/*");
+//        context.addServlet(new ServletHolder(homeRequestsServlet), "/*");
 
         Server server = new Server(8080);
         server.setHandler(context);

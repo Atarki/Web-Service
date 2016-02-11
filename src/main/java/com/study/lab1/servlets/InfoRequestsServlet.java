@@ -32,10 +32,9 @@ public class InfoRequestsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList citiesID = PathFileReader.getItemList(request.getParameter("path"));
-//        ArrayList citiesID = PathFileReader.getItemList(string2);
         data = data(request);
         data.put("cities", citiesID);
-        if (citiesID.isEmpty()) {
+        if (citiesID.size()==0) {
             response.getWriter().println(PageGenerator.instance().getPage("error.html", data));
         } else {
             response.getWriter().println(PageGenerator.instance().getPage("cityData.html", data));

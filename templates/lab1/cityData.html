@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home Page</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.indigo-pink.min.css">
@@ -11,7 +10,7 @@
 <body>
 
 <form method="get">
-    <input type="submit" value="Go Back" class="mdl-button mdl-js-button mdl-button--primary" formaction="/">
+    <input type="submit" value="Refresh" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" formaction="info">
 </form>
 <form>
     <div>
@@ -36,22 +35,5 @@
     </#list>
     </tbody>
 </table>
-
-<div/>
-<div>
-    <script type="text/javascript">
-        function performClick(elemId) {
-            var elem = document.getElementById(elemId);
-            if (elem && document.createEvent) {
-                var evt = document.createEvent("MouseEvents");
-                evt.initEvent("click", true, false);
-                elem.dispatchEvent(evt);
-            }
-        }
-    </script>
-    <a href="#" onclick="performClick('theFile');">Open file dialog</a>
-    <input type="file" id="theFile"/>
-</div>
-
 </body>
 </html>
