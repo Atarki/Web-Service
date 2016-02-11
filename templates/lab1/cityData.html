@@ -27,14 +27,10 @@
     </tbody>
 </table>
 <div>
-    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-        <#list cities as cityID>
-            <tr>
-                <td class="mdl-data-table__cell--non-numeric">${cityID}</td>
-                <td></td>
-            </tr>
-        </#list>
-    </table>
+    <#list cities as citiesID>
+
+        <tr><li>${citiesID_index}. ${citiesID}<br></li></tr>
+    </#list>
 </div>
 <!--</#list>-->
 
