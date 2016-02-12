@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.indigo-pink.min.css">
     <script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
 </head>
-<body>
+<body bgcolor="#ddf6f9">
 <table width="100%">
+    <tr>
     <td align="center">
         <form method="get">
             <input type="submit" value="Refresh"
                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                   formaction="info">
+                   formaction="/">
         </form>
         <form>
             <div>
@@ -32,8 +33,10 @@
             <tbody>
             <#list cities as citiesID>
                 <tr>
-                    <td class="mdl-data-table__cell--non-numeric">${citiesID}</td>
                     <td>${citiesID_index}</td>
+                    <td> </td>
+                    <td class="mdl-data-table__cell--non-numeric">${citiesID}</td>
+                    <td> </td>
                 </tr>
             </#list>
             </tbody>

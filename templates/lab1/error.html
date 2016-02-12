@@ -2,20 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home Page</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.indigo-pink.min.css">
     <script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
 </head>
-<body>
+<body bgcolor="#ddf6f9">
 <table width="100%">
+    <tr>
     <td align="center">
-
         <form method="get">
             <input type="submit" value="Refresh"
                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                   formaction="info">
+                   formaction="/">
         </form>
         <form>
             <div>
@@ -30,7 +29,7 @@
             </div>
         </form>
         <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" width="400"></table>
-        <h3>File not found or incorrect text file type</h3>
+        <h5>${errors}</h5>
 </table>
 
 </body>

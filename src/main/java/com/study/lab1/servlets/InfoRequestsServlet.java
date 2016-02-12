@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,13 +16,12 @@ import java.util.Map;
 
 @WebServlet(value = "info")
 public class InfoRequestsServlet extends HttpServlet {
-    private Map<String, Object> data;
-    String string = "src/city_list.txt";
-    String string2 = "D:\\_JAVA_PROJ\\_JAVA_TUTS_FROM_TOLIK_WEB\\src\\city_list.txt";
+    /*String string = "src/city_list.txt";
+    String string2 = "D:\\_JAVA_PROJ\\_JAVA_TUTS_FROM_TOLIK_WEB\\src\\city_list.txt";*/
+    private Map<String, Object> data = new HashMap<>();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        data = data(request);
         data.put("cities", new ArrayList<>());
 
         response.getWriter().println(PageGenerator.instance().getPage("cityData.html", data));
@@ -31,24 +31,17 @@ public class InfoRequestsServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ArrayList citiesID = PathFileReader.getItemList(request.getParameter("path"));
-        data = data(request);
-        data.put("cities", citiesID);
-        if (citiesID.size()==0) {
-            response.getWriter().println(PageGenerator.instance().getPage("error.html", data));
-        } else {
+        try {
+            ArrayList citiesID = PathFileReader.getItemList(request.getParameter("path"));
+            data.put("cities", citiesID);
+
             response.getWriter().println(PageGenerator.instance().getPage("cityData.html", data));
             response.setContentType("text/html;charset=utf-8");
             response.setStatus(HttpServletResponse.SC_OK);
+        } catch (FileNotFoundException e) {
+            data.put("errors", e.getMessage());
+            response.getWriter().println(PageGenerator.instance().getPage("error.html", data));
+            System.out.println(e.toString());
         }
     }
-
-    private static Map<String, Object> data(HttpServletRequest request) {
-        Map<String, Object> pageVariables = new HashMap<>();
-        pageVariables.put("login", request.getParameter("login"));
-        pageVariables.put("password", request.getParameter("password"));
-        return pageVariables;
-    }
-
-
 }
