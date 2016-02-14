@@ -3,28 +3,26 @@ package com.study.lab1.servlets;
 import com.study.lab1.main.PathFileReader;
 import com.study.lab1.templater.PageGenerator;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-@WebServlet(value = "info")
-public class InfoRequestsServlet extends HttpServlet {
-    /*String string = "src/city_list.txt";
-    String string2 = "D:\\_JAVA_PROJ\\_JAVA_TUTS_FROM_TOLIK_WEB\\src\\city_list.txt";*/
-    private Map<String, Object> data = new HashMap<>();
+public class InfoRequestsServlet extends HttpServlet  {
+
+    private Map<String, Object> pageData = new HashMap<>();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        data.put("cities", new ArrayList<>());
+        pageData.put("person", new ArrayList<>());
 
-        response.getWriter().println(PageGenerator.instance().getPage("cityData.html", data));
+        response.getWriter().println(PageGenerator.instance().getPage("personData.html", pageData));
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
     }
@@ -32,16 +30,21 @@ public class InfoRequestsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            ArrayList citiesID = PathFileReader.getItemList(request.getParameter("path"));
-            data.put("cities", citiesID);
+            List<Object> personList = PathFileReader.getItemList(request.getParameter("path"));
+            pageData.put("person", personList);
 
-            response.getWriter().println(PageGenerator.instance().getPage("cityData.html", data));
+            response.getWriter().println(PageGenerator.instance().getPage("personData.html", pageData));
             response.setContentType("text/html;charset=utf-8");
             response.setStatus(HttpServletResponse.SC_OK);
-        } catch (FileNotFoundException e) {
-            data.put("errors", e.getMessage());
-            response.getWriter().println(PageGenerator.instance().getPage("error.html", data));
-            System.out.println(e.toString());
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            String s = e.getMessage();
+            System.out.println(s);
+
+            RequestDispatcher rd = request.getRequestDispatcher("error");
+            request.setAttribute("errorData",e.getMessage());
+            rd.include(request, response);
         }
     }
 }
