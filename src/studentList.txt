@@ -1,0 +1,6 @@
+Tolik, male, 25, Tolik@mail.com, dveloper, Dnepr, Java
+Tim, male, 28, Tim@mail.com, student, Kiev, Java
+Chikitosik, female, 20+, Chikitosik@mail.com, student, Harkov, Java
+Atrem, male, 20+, Atrem@mail.com, student, unknown, Java
+Alex, male, 20+, Alex@mail.com, student, unknown, Java
+Kate, female, 20+, Kate@mail.com,student, unknown, Java
