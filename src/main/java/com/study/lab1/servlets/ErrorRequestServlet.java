@@ -1,5 +1,7 @@
 package com.study.lab1.servlets;
 
+import com.study.lab1.templater.PageGenerator;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,18 +19,12 @@ public class ErrorRequestServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=utf-8");
+        String errorData = (String) req.getAttribute("errorData");
 
-        String errorData = (String) req.getParameter("path");
-        String errorData2 = (String) req.getAttribute("errorData");
-        System.out.println("error is " + errorData);
-        System.out.println("error is " + errorData2);
-//
-        Map<String, Object> dataError = new HashMap<>();
-        dataError.put("error", errorData);
-//
-//
+        Map<String, Object> dataErrorMap = new HashMap<>();
+        dataErrorMap.put("error", errorData);
 
-        resp.getWriter().println("error is " + errorData);
-//        resp.getWriter().println(PageGenerator.instance().getPage("error.html", dataError));
+//        resp.getWriter().println("error is " + errorData);
+        resp.getWriter().println(PageGenerator.instance().getPage("error.html", dataErrorMap));
     }
 }

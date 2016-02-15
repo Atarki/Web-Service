@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class InfoRequestsServlet extends HttpServlet  {
+public class InfoRequestsServlet extends HttpServlet {
 
     private Map<String, Object> pageData = new HashMap<>();
 
@@ -37,14 +37,17 @@ public class InfoRequestsServlet extends HttpServlet  {
             response.setContentType("text/html;charset=utf-8");
             response.setStatus(HttpServletResponse.SC_OK);
         } catch (Exception e) {
-
             e.printStackTrace();
-            String s = e.getMessage();
-            System.out.println(s);
 
-            RequestDispatcher rd = request.getRequestDispatcher("error");
-            request.setAttribute("errorData",e.getMessage());
+            if (e.getMessage().isEmpty()) {
+                System.out.println("Exception is: " + e.getMessage());
+                request.setAttribute("errorData", "Please enter file path");
+            } else {
+                request.setAttribute("errorData", e.getMessage());
+            }
+            RequestDispatcher rd = request.getRequestDispatcher("/error");
             rd.include(request, response);
+
         }
     }
 }
